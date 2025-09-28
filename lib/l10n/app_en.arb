@@ -1,0 +1,87 @@
+{
+  "@@locale": "en",
+  "appTitle": "Flutter Test Dev",
+  "helloWorld": "Hello World!",
+  "languageEnglish": "English",
+  "languageVietnamese": "Vietnamese",
+  "loginTitle": "Login",
+  "emailLabel": "Email",
+  "passwordLabel": "Password",
+  "signIn": "Sign In",
+  "homeTitle": "Home",
+  "homeWelcome": "Welcome Home!",
+  "language": "Language",
+  
+  "tabHome": "Home",
+  "tabSearch": "Search",
+  "tabSettings": "Settings",
+  "tab2": "Tab 2",
+  "tab3": "Tab 3",
+  
+  "profileTitle": "Profile",
+  "profileError": "Profile Error",
+  "profileErrorUnknown": "Unknown error",
+  "profileNoDataAvailable": "No profile data available",
+  "profileRetry": "Retry",
+  "profileCancel": "Cancel",
+  "profileEdit": "Edit Profile",
+  "profileEditComingSoon": "Edit profile feature coming soon",
+  "profileRefreshing": "Refreshing profile...",
+  "profileSignOut": "Sign Out",
+  "profileSignOutConfirm": "Are you sure you want to sign out?",
+  "profileSignOutFailed": "Failed to sign out: {error}",
+  "@profileSignOutFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "profileInformation": "Profile Information",
+  "profileEmail": "Email",
+  "profileFullName": "Full Name",
+  "profileUsername": "Username",
+  "profileGender": "Gender",
+  "profileUserId": "User ID",
+  
+  "loginFailed": "Login failed: {error}",
+  "@loginFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginFailedUnknown": "Login failed: Unknown error",
+  
+  "networkError": "Network Error",
+  "networkErrorDescription": "Please check your internet connection.",
+  "networkErrorOk": "OK",
+  
+  "postsPullUpLoad": "pull up load",
+  "postsLoadFailed": "Load Failed!Click retry!",
+  "postsReleaseToLoad": "release to load more",
+  "postsNoMoreData": "No more Data",
+  "postsId": "id:{id}. {title}",
+  "@postsId": {
+    "placeholders": {
+      "id": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "settingsDone": "Done",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeUniversal": "Universal (System)",
+  "themeOrange": "Orange",
+  "theme": "Theme",
+  "profileDataNotAvailable": "Profile data not available",
+  "splashScreen": "Splash Screen"
+}
+

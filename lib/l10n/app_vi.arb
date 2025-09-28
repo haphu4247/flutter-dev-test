@@ -1,0 +1,87 @@
+{
+  "@@locale": "vi",
+  "appTitle": "Flutter Test Dev",
+  "helloWorld": "Xin chào thế giới!",
+  "languageEnglish": "Tiếng Anh",
+  "languageVietnamese": "Tiếng Việt",
+  "loginTitle": "Đăng nhập",
+  "emailLabel": "Email",
+  "passwordLabel": "Mật khẩu",
+  "signIn": "Đăng nhập",
+  "homeTitle": "Trang chủ",
+  "homeWelcome": "Chào mừng về trang chủ!",
+  "language": "Ngôn ngữ",
+  
+  "tabHome": "Trang chủ",
+  "tabSearch": "Tìm kiếm",
+  "tabSettings": "Cài đặt",
+  "tab2": "Tab 2",
+  "tab3": "Tab 3",
+  
+  "profileTitle": "Hồ sơ",
+  "profileError": "Lỗi hồ sơ",
+  "profileErrorUnknown": "Lỗi không xác định",
+  "profileNoDataAvailable": "Không có dữ liệu hồ sơ",
+  "profileRetry": "Thử lại",
+  "profileCancel": "Hủy",
+  "profileEdit": "Chỉnh sửa hồ sơ",
+  "profileEditComingSoon": "Tính năng chỉnh sửa hồ sơ sắp ra mắt",
+  "profileRefreshing": "Đang làm mới hồ sơ...",
+  "profileSignOut": "Đăng xuất",
+  "profileSignOutConfirm": "Bạn có chắc chắn muốn đăng xuất?",
+  "profileSignOutFailed": "Đăng xuất thất bại: {error}",
+  "@profileSignOutFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "profileInformation": "Thông tin hồ sơ",
+  "profileEmail": "Email",
+  "profileFullName": "Họ và tên",
+  "profileUsername": "Tên đăng nhập",
+  "profileGender": "Giới tính",
+  "profileUserId": "ID người dùng",
+  
+  "loginFailed": "Đăng nhập thất bại: {error}",
+  "@loginFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginFailedUnknown": "Đăng nhập thất bại: Lỗi không xác định",
+  
+  "networkError": "Lỗi mạng",
+  "networkErrorDescription": "Vui lòng kiểm tra kết nối internet.",
+  "networkErrorOk": "OK",
+  
+  "postsPullUpLoad": "kéo lên để tải",
+  "postsLoadFailed": "Tải thất bại! Nhấn để thử lại!",
+  "postsReleaseToLoad": "thả để tải thêm",
+  "postsNoMoreData": "Không còn dữ liệu",
+  "postsId": "id:{id}. {title}",
+  "@postsId": {
+    "placeholders": {
+      "id": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "settingsDone": "Xong",
+  "themeLight": "Sáng",
+  "themeDark": "Tối",
+  "themeUniversal": "Tự động (Hệ thống)",
+  "themeOrange": "Cam",
+  "theme": "Chủ đề",
+  "profileDataNotAvailable": "Dữ liệu hồ sơ không có sẵn",
+  "splashScreen": "Màn hình khởi động"
+}
+
