@@ -57,7 +57,7 @@ class LightThemeColors extends BaseTheme {
 
   // Utility colors
   @override
-  Color get shadow => primary.withOpacity(0.3);
+  Color get shadow => primary.withValues(alpha: 0.3);
 
   @override
   Color get divider => const Color(0xFFE0E0E0);
@@ -72,7 +72,7 @@ class LightThemeColors extends BaseTheme {
   Color get switchThumb => primary;
 
   @override
-  Color get switchTrack => primary.withOpacity(0.5);
+  Color get switchTrack => primary.withValues(alpha: 0.5);
 
   @override
   Color get inputBorder => const Color(0xFFE0E0E0);

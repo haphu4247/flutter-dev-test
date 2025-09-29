@@ -89,7 +89,7 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
             else{
               body = Text(loc.postsNoMoreData);
             }
-            return Container(
+            return SizedBox(
               height: 55.0,
               child: Center(child:body),
             );

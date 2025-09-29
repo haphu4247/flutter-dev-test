@@ -45,7 +45,7 @@ class ProfileIconButton extends ConsumerWidget {
 
     // Navigate to profile screen
     if (profileState.hasProfile) {
-      AppRoutePath.userProfile.goWithObject(context, profileState.profile);
+      AppRoutePath.userProfile.go(context, data: profileState.profile);
     } else if (profileState.errorMessage != null) {
       // Show error dialog if there's an error
       await _showErrorDialog(

@@ -76,7 +76,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       return LoginResponse.fromJson(profileData);
     } catch (e) {
       // Cache corrupted, return null to force fresh fetch
-      print('Failed to load cached profile: $e');
+      
       return null;
     }
   }
@@ -117,19 +117,15 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       final profileJson = json.encode(profile.toJson());
       await prefs.setString(PrefKey.profileJson, profileJson);
     } catch (e) {
-      print('Failed to cache profile: $e');
+      
       // Cache failure is not critical, don't throw error
     }
   }
 
   /// Clear cached profile data
   Future<void> _clearProfileCache() async {
-    try {
-      final prefs = await AppPrefs.instance();
-      await prefs.remove(PrefKey.profileJson);
-    } catch (e) {
-      print('Failed to clear profile cache: $e');
-    }
+    final prefs = await AppPrefs.instance();
+    await prefs.remove(PrefKey.profileJson);
   }
 
   /// Clear profile state (useful for logout)

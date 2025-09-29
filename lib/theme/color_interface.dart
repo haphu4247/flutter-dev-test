@@ -15,9 +15,9 @@ abstract class ColorInterface {
   
   // Surface colors
   Color get surface;
-  Color get background;
+  Color get background; // Deprecated: Use surface instead
   Color get onSurface;
-  Color get onBackground;
+  Color get onBackground; // Deprecated: Use onSurface instead
   
   // Error colors
   Color get error;
@@ -55,12 +55,10 @@ abstract class ColorInterface {
     secondary: secondary,
     secondaryContainer: secondaryContainer,
     surface: surface,
-    background: background,
     error: error,
     onPrimary: onPrimary,
     onSecondary: onSecondary,
     onSurface: onSurface,
-    onBackground: onBackground,
     onError: onError,
   );
 }

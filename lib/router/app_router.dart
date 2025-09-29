@@ -25,6 +25,9 @@ GoRouter createRouter({required ValueGetter<bool> isAuthenticated, required Glob
       GoRoute(
         path: AppRoutePath.home.path,
         builder: (context, state) => const HomeScreen(),
+        routes: [
+          
+        ],
       ),
       GoRoute(
         path: AppRoutePath.userProfile.path,

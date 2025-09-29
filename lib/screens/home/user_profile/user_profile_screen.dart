@@ -21,13 +21,12 @@ class UserProfileScreen extends StatelessWidget {
         title: Text(loc.profileTitle),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => AppRoutePath.back(context),
+          onPressed: () => AppRoutePath.home.go(context),
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
             onPressed: () {
-              // TODO: Navigate to edit profile screen
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(loc.profileEditComingSoon)),
               );
@@ -36,7 +35,6 @@ class UserProfileScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () async {
-              // TODO: Implement refresh functionality
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(loc.profileRefreshing)),
               );
@@ -203,7 +201,7 @@ class UserProfileScreen extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton.icon(
             onPressed: () {
-              // TODO: Navigate to edit profile
+            
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(loc.profileEditComingSoon)),
               );

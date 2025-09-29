@@ -57,7 +57,7 @@ class OrangeThemeColors extends BaseTheme {
 
   // Utility colors
   @override
-  Color get shadow => primary.withOpacity(0.3); // Orange shadow
+  Color get shadow => primary.withValues(alpha: 0.3); // Orange shadow
 
   @override
   Color get divider => const Color(0xFFFFE0B2); // Light orange divider
@@ -72,7 +72,7 @@ class OrangeThemeColors extends BaseTheme {
   Color get switchThumb => primary; // Orange switch thumb
 
   @override
-  Color get switchTrack => primary.withOpacity(0.5); // Semi-transparent orange
+  Color get switchTrack => primary.withValues(alpha: 0.5); // Semi-transparent orange
 
   @override
   Color get inputBorder => const Color(0xFFFFCC80); // Light orange border

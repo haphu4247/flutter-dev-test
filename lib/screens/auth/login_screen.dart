@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test_dev/l10n/generated/app_localizations.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_test_dev/router/app_route_path.dart';
 
 import '../../providers/auth/auth_provider.dart';
 
@@ -67,13 +67,15 @@ class LoginScreen extends ConsumerWidget {
 
       if (ref.read(authProvider).loggedIn) {
         if (context.mounted) {
-          context.go('/home');
+          AppRoutePath.home.go(context);
         }
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(AppLocalizations.of(context)!.loginFailed(ref.read(authProvider).errorMessage ?? AppLocalizations.of(context)!.profileErrorUnknown))),
-            );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context)!.loginFailed(ref.read(authProvider).errorMessage ?? AppLocalizations.of(context)!.profileErrorUnknown))),
+        );
+      }
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

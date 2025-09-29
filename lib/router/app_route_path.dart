@@ -18,16 +18,15 @@ enum AppRoutePath {
     }
   }
 
-  void go(BuildContext context) {
-    if (context.mounted) {
-      context.go(path);
-    }
-  }
-  
-  /// Navigate to user profile with LoginResponse data
-  void goWithObject(BuildContext context, Object? data) {
+  void go(BuildContext context, {Object? data}) {
     if (context.mounted) {
       context.go(path, extra: data);
+    }
+  }
+
+  void push(BuildContext context, {Object? data}) {
+    if (context.mounted) {
+      context.pushNamed(path, extra: data);
     }
   }
 }

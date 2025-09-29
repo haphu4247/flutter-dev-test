@@ -12,12 +12,10 @@ abstract class BaseTheme implements ColorInterface {
     secondary: secondary,
     secondaryContainer: secondaryContainer,
     surface: surface,
-    background: background,
     error: error,
     onPrimary: onPrimary,
     onSecondary: onSecondary,
     onSurface: onSurface,
-    onBackground: onBackground,
     onError: onError,
   );
   /// Get the theme name
@@ -137,14 +135,14 @@ abstract class BaseTheme implements ColorInterface {
   
   // Switch theme builder
   SwitchThemeData _buildSwitchTheme() => SwitchThemeData(
-    thumbColor: MaterialStateProperty.resolveWith((states) {
-      if (states.contains(MaterialState.selected)) {
+    thumbColor: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
         return switchThumb;
       }
       return divider;
     }),
-    trackColor: MaterialStateProperty.resolveWith((states) {
-      if (states.contains(MaterialState.selected)) {
+    trackColor: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
         return switchTrack;
       }
       return divider;

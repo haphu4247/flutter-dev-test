@@ -69,7 +69,7 @@ class SettingsButton extends ConsumerWidget {
 }
 
 /// Settings modal content widget
-class SettingsModal extends ConsumerWidget {
+class SettingsModal extends ConsumerStatefulWidget {
   /// Whether to show language settings
   final bool showLanguageSettings;
   
@@ -87,9 +87,27 @@ class SettingsModal extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentLocale = ref.read(localeProvider);
-    final currentTheme = ref.read(themeProvider);
+  ConsumerState<SettingsModal> createState() => _SettingsModalState();
+}
+
+class _SettingsModalState extends ConsumerState<SettingsModal> {
+  Locale? _selectedLocale;
+  AppThemeMode? _selectedTheme;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize with current values
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _selectedLocale = ref.read(localeProvider);
+        _selectedTheme = ref.read(themeProvider);
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
 
     return Container(
@@ -99,20 +117,20 @@ class SettingsModal extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title ?? 'Settings',
+            widget.title ?? 'Settings',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 20),
           
           // Language Section
-          if (showLanguageSettings) ...[
-            _buildLanguageSection(context, ref, currentLocale, loc),
+          if (widget.showLanguageSettings) ...[
+            _buildLanguageSection(context, ref, loc),
             const SizedBox(height: 20),
           ],
           
           // Theme Section
-          if (showThemeSettings) ...[
-            _buildThemeSection(context, ref, currentTheme, loc),
+          if (widget.showThemeSettings) ...[
+            _buildThemeSection(context, ref, loc),
             const SizedBox(height: 20),
           ],
           
@@ -133,7 +151,6 @@ class SettingsModal extends ConsumerWidget {
   Widget _buildLanguageSection(
     BuildContext context,
     WidgetRef ref,
-    Locale? currentLocale,
     AppLocalizations loc,
   ) {
     return Column(
@@ -144,23 +161,75 @@ class SettingsModal extends ConsumerWidget {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        RadioListTile<Locale>(
-          value: const Locale('en'),
-          groupValue: currentLocale ?? const Locale('en'),
-          title: Text(loc.languageEnglish),
-          onChanged: (val) async {
-            await ref.read(localeProvider.notifier).setLocale(val);
-          },
+        _buildLanguageOption(
+          context,
+          ref,
+          const Locale('en'),
+          loc.languageEnglish,
+          _selectedLocale ?? const Locale('en'),
         ),
-        RadioListTile<Locale>(
-          value: const Locale('vi'),
-          groupValue: currentLocale ?? const Locale('en'),
-          title: Text(loc.languageVietnamese),
-          onChanged: (val) async {
-            await ref.read(localeProvider.notifier).setLocale(val);
-          },
+        _buildLanguageOption(
+          context,
+          ref,
+          const Locale('vi'),
+          loc.languageVietnamese,
+          _selectedLocale ?? const Locale('en'),
         ),
       ],
+    );
+  }
+
+  /// Build individual language option
+  Widget _buildLanguageOption(
+    BuildContext context,
+    WidgetRef ref,
+    Locale locale,
+    String title,
+    Locale selectedLocale,
+  ) {
+    final isSelected = locale == selectedLocale;
+    
+    return ListTile(
+      leading: GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedLocale = locale;
+          });
+          ref.read(localeProvider.notifier).setLocale(locale);
+        },
+        child: Container(
+          width: 24,
+          height: 24,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: isSelected 
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+              width: 2,
+            ),
+          ),
+          child: isSelected
+            ? Center(
+                child: Container(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              )
+            : null,
+        ),
+      ),
+      title: Text(title),
+      onTap: () {
+        setState(() {
+          _selectedLocale = locale;
+        });
+        ref.read(localeProvider.notifier).setLocale(locale);
+      },
     );
   }
 
@@ -168,7 +237,6 @@ class SettingsModal extends ConsumerWidget {
   Widget _buildThemeSection(
     BuildContext context,
     WidgetRef ref,
-    AppThemeMode currentTheme,
     AppLocalizations loc,
   ) {
     return Column(
@@ -179,43 +247,95 @@ class SettingsModal extends ConsumerWidget {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        RadioListTile<AppThemeMode>(
-          value: AppThemeMode.light,
-          groupValue: currentTheme,
-          title: Text(loc.themeLight),
-          secondary: const Icon(Icons.light_mode),
-          onChanged: (val) async {
-            await ref.read(themeProvider.notifier).setTheme(val!);
-          },
+        _buildThemeOption(
+          context,
+          ref,
+          AppThemeMode.light,
+          loc.themeLight,
+          Icons.light_mode,
+          _selectedTheme,
         ),
-        RadioListTile<AppThemeMode>(
-          value: AppThemeMode.dark,
-          groupValue: currentTheme,
-          title: Text(loc.themeDark),
-          secondary: const Icon(Icons.dark_mode),
-          onChanged: (val) async {
-            await ref.read(themeProvider.notifier).setTheme(val!);
-          },
+        _buildThemeOption(
+          context,
+          ref,
+          AppThemeMode.dark,
+          loc.themeDark,
+          Icons.dark_mode,
+          _selectedTheme,
         ),
-        RadioListTile<AppThemeMode>(
-          value: AppThemeMode.universal,
-          groupValue: currentTheme,
-          title: Text(loc.themeUniversal),
-          secondary: const Icon(Icons.settings_system_daydream),
-          onChanged: (val) async {
-            await ref.read(themeProvider.notifier).setTheme(val!);
-          },
+        _buildThemeOption(
+          context,
+          ref,
+          AppThemeMode.universal,
+          loc.themeUniversal,
+          Icons.settings_system_daydream,
+          _selectedTheme,
         ),
-        RadioListTile<AppThemeMode>(
-          value: AppThemeMode.orange,
-          groupValue: currentTheme,
-          title: Text(loc.themeOrange),
-          secondary: const Icon(Icons.wb_sunny),
-          onChanged: (val) async {
-            await ref.read(themeProvider.notifier).setTheme(val!);
-          },
+        _buildThemeOption(
+          context,
+          ref,
+          AppThemeMode.orange,
+          loc.themeOrange,
+          Icons.wb_sunny,
+          _selectedTheme,
         ),
       ],
+    );
+  }
+
+  /// Build individual theme option
+  Widget _buildThemeOption(
+    BuildContext context,
+    WidgetRef ref,
+    AppThemeMode theme,
+    String title,
+    IconData icon,
+    AppThemeMode? selectedTheme,
+  ) {
+    final isSelected = theme == selectedTheme;
+    
+    return ListTile(
+      leading: GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedTheme = theme;
+          });
+          ref.read(themeProvider.notifier).setTheme(theme);
+        },
+        child: Container(
+          width: 24,
+          height: 24,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: isSelected 
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+              width: 2,
+            ),
+          ),
+          child: isSelected
+            ? Center(
+                child: Container(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              )
+            : null,
+        ),
+      ),
+      title: Text(title),
+      trailing: Icon(icon),
+      onTap: () {
+        setState(() {
+          _selectedTheme = theme;
+        });
+        ref.read(themeProvider.notifier).setTheme(theme);
+      },
     );
   }
 }

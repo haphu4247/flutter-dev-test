@@ -57,7 +57,7 @@ class UniversalThemeColors extends BaseTheme {
 
   // Utility colors
   @override
-  Color get shadow => const Color(0xFF4F46E5).withOpacity(0.1);
+  Color get shadow => const Color(0xFF4F46E5).withValues(alpha: 0.1);
 
   @override
   Color get divider => const Color(0xFFE2E8F0);
@@ -72,7 +72,7 @@ class UniversalThemeColors extends BaseTheme {
   Color get switchThumb => primary;
 
   @override
-  Color get switchTrack => primary.withOpacity(0.5);
+  Color get switchTrack => primary.withValues(alpha: 0.5);
 
   @override
   Color get inputBorder => const Color(0xFFE2E8F0);
@@ -102,12 +102,4 @@ class UniversalThemeColors extends BaseTheme {
 
   @override
   Color get navigationBackground => const Color(0xFFFFFFFF);
-
-  // Override specific styling for Universal theme
-  double _getAppBarElevation() => 3;
-  double _getButtonElevation() => 2;
-  double _getBorderWidth() => 1.5;
-  OutlinedBorder _getButtonShape() => RoundedRectangleBorder(borderRadius: BorderRadius.circular(12));
-  BorderRadius _getInputBorderRadius() => BorderRadius.circular(12);
-  bool _isInputFilled() => true;
 }
