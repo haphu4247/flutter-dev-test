@@ -9,7 +9,7 @@ A Flutter application with modern architecture, internationalization support, an
 - 🌐 **Network Management**: Connectivity monitoring and error handling
 - 🎨 **Theme Support**: Light/Dark theme switching
 - 📱 **Cross-platform**: Support for Android, iOS, Web, Windows, macOS, and Linux
-- 🏗️ **Modern Architecture**: Clean architecture with Riverpod state management
+- 🏗️ **Modern Architecture**: Clean architecture with Provider state management
 - 🧭 **Navigation**: GoRouter for declarative routing
 
 ## Prerequisites
@@ -106,25 +106,57 @@ flutter build web
 
 ## Project Structure
 
+### Clean Architecture Implementation
+
+This project follows the [Flutter Clean Architecture guide](https://docs.flutter.dev/app-architecture/guide):
+
 ```
 lib/
-├── base/              # Base classes and utilities
-│   └── api_client/    # HTTP client configuration
-├── l10n/              # Internationalization files
-├── models/            # Data models
-├── providers/         # Riverpod state management
-├── router/            # Navigation configuration
-├── screens/           # UI screens
-├── services/          # Business logic services
-├── storage/           # Local storage management
-├── theme/             # App theming
-└── widgets/           # Reusable UI components
+├── features/               # Feature-based organization
+│   ├── auth/              # Authentication feature
+│   │   ├── repository/    # Auth data layer
+│   │   └── viewmodel/     # Auth UI state
+│   ├── posts/             # Posts feature
+│   │   ├── repository/    # Posts data layer
+│   │   └── viewmodel/     # Posts UI state
+│   └── profile/           # Profile feature
+│       ├── repository/    # Profile data layer
+│       └── viewmodel/     # Profile UI state
+├── screens/                # UI screens
+├── services/               # Shared services (API wrappers)
+├── models/                 # Shared data models
+├── base/                   # Base classes and utilities
+│   └── api_client/         # HTTP client configuration
+├── providers/              # UI state (theme, locale, network)
+├── router/                 # Navigation configuration
+├── storage/                # Local storage management
+├── theme/                  # App theming
+├── widgets/                # Reusable UI components
+└── l10n/                   # Internationalization files
 ```
+
+### Architecture Layers
+
+Each feature contains its own layers:
+
+**Feature Structure**:
+- **Repository**: Single source of truth, handles caching and business logic
+- **ViewModel**: Presentation logic and UI state management
+- **Service**: Thin wrappers around API endpoints
+- **View**: Widgets that render UI only
+
+**Shared Components**:
+- `services/`: Common API services
+- `models/`: Shared data models
+- `providers/`: UI state (theme, locale, network)
+- `base/`: Infrastructure and utilities
+
+See [ARCHITECTURE_GUIDE.md](ARCHITECTURE_GUIDE.md) for detailed architecture documentation.
 
 ## Dependencies
 
 - **go_router**: Declarative routing
-- **flutter_riverpod**: State management
+- **provider**: State management
 - **dio**: HTTP client
 - **shared_preferences**: Local storage
 - **connectivity_plus**: Network connectivity

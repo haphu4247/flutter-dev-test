@@ -1,6 +1,6 @@
-arb-dir: lib/l10n
+arb-dir: lib/core/translations/
 template-arb-file: app_en.arb
-output-dir: lib/l10n/generated/
+output-dir: lib/core/translations/generated/
 output-localization-file: app_localizations.dart
 output-class: AppLocalizations
 preferred-supported-locales:

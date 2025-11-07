@@ -4,20 +4,23 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.10.0-203.0.dev
+  sdk: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  # Localization command: flutter gen-l10n
   flutter_localizations:
     sdk: flutter
   go_router: ^14.2.0
-  flutter_riverpod: ^2.5.1
+  provider: ^6.1.2
   shared_preferences: ^2.3.2
   dio: ^5.7.0
   connectivity_plus: ^7.0.0
   pull_to_refresh: ^2.0.0
   app_settings: ^5.1.1
+  flutter_smart_dialog: ^4.9.8+9
+  lottie: ^3.3.2
 
 dev_dependencies:
   flutter_test:
@@ -27,3 +30,26 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+      - assets/icons/
+      - assets/images/
+      - assets/fonts/
+      - assets/lottie/
+  fonts:
+    - family: RubikMoonrocks
+      fonts:
+        - asset: assets/fonts/RubikMoonrocks-Regular.ttf
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto-BlackItalic.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-BoldItalic.ttf
+        - asset: assets/fonts/Roboto-Italic.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
+        - asset: assets/fonts/Roboto-LightItalic.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+        - asset: assets/fonts/Roboto-MediumItalic.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto-ThinItalic.ttf
